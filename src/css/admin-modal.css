@@ -1,0 +1,15 @@
+ /*
+* ---------------------------------***-----------------------------------|
+*      JsFramework Copywrite Dan Weatherbee 2018   *
+*           Create your own css sheet for Mock ups.        *
+*                 and add them inside helmet js.                   *
+ *|=====    DON'T MESS WITH THIS ONE     ======|*
+*                         WEBSITE DEFAULT                         *
+*                             ****    CSS    ****                            *
+*                                      ====                                     *
+* -----------------------------------------------------------------------|
+ */
+#admin-modal {
+     z-index: 1;
+     margin-top: 5%;
+}

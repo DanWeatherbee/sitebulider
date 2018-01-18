@@ -1,0 +1,100 @@
+ /*
+* ---------------------------------***-----------------------------------|
+*      JsFramework Copywrite Dan Weatherbee 2018   *
+*           Create your own css sheet for Mock ups.        *
+*                 and add them inside helmet js.                   *
+ *|=====    DON'T MESS WITH THIS ONE     ======|*
+*                         WEBSITE DEFAULT                         *
+*                             ****    CSS    ****                            *
+*                                      ====                                     *
+* -----------------------------------------------------------------------|
+ */
+
+ .white-txt {
+     color: white;
+ }
+
+ .font-weight-bold {
+     font-weight: 900;
+ }
+
+ .font-large {
+     font-size: 300%;
+ }
+
+ .font-xl {
+     font-size: 15em;
+     padding: 5%;
+ }
+
+ .margin-body-top-5 {
+     margin-top: 5%;
+ }
+
+ .black-txt-shadow {
+     text-shadow: 0 2px 0 black;
+ }
+
+ #game-play-btn {
+     max-width: 510px;
+     position: fixed;
+     top: 85%;
+     left: 36.50%;
+     z-index: 1000;
+ }
+
+ #player-dw-root {
+     height: auto;
+     width: auto;
+     text-align: center;
+ }
+
+ .img-size-50 {
+     width: 8%;
+     height: auto;
+     display: inline-flex;
+ }
+
+ .textarea-style {
+     margin-top: 4%;
+     font-size: 24px;
+     max-width: 95%;
+ }
+
+ .navbar {
+     z-index: 1;
+     font-size: 2em;
+     font-weight: 400;
+ }
+
+ .black-txt-shadow {
+     text-shadow: 0 2px 0 black;
+ }
+
+ .white-txt-shadow {
+     text-shadow: 0 2px 0 white;
+ }
+
+ @font-face {
+     font-family: openSans;
+     src: url(fonts/OpenSans-CondLight.ttf);
+ }
+
+ .font-1 {
+     font-family: openSans;
+ }
+
+ .font-2 {
+     font-family: arial;
+ }
+
+ @media only screen and (max-width: 700px) {
+
+     .ipad {
+         border: 0 solid;
+         background: inherit;
+     }
+     .img-size-50 {
+         width: 20%;
+     }
+ }

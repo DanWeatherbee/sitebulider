@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Effective JavaScript: Frogger</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <script src="../js/core/lib/jquery-3.2.1.min.js"></script>
+    <h1 id="game-header">Dans Frogger Game Clone</h1>
+    <script src="js/resources.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/engine.js"></script>
+    <h2 class="footer_text">Object Oriented Java Script</h2>
+    <h3 class="footer_text2">Udacity Front End Nano Degree</h3>
+    <script>
+
+    var lps = localStorage.getItem('lastplayerscore', lastplayerscore),
+        s = localStorage.getItem('score', score),
+        lp = localStorage.getItem('lastplayer', lastplayer),
+        n = localStorage.getItem('name', name);
+
+    If(s >= lps) {
+        lps = s;
+        lp = n;
+    };
+
+    $('.footer_text').html('<h4>High Score </h4>' + lp + ' ' + lps);
+    $('#game-header').html(n + ' ' + s);
+    </script>
+</body>
+
+</html>

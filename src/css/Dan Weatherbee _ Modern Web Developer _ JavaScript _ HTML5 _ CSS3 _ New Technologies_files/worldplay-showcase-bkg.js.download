@@ -1,0 +1,151 @@
+(function (lib, img, cjs, ss, an) {
+
+var p; // shortcut to reference prototypes
+lib.webFontTxtInst = {}; 
+var loadedTypekitCount = 0;
+var loadedGoogleCount = 0;
+var gFontsUpdateCacheList = [];
+var tFontsUpdateCacheList = [];
+lib.ssMetadata = [];
+
+
+
+lib.updateListCache = function (cacheList) {		
+	for(var i = 0; i < cacheList.length; i++) {		
+		if(cacheList[i].cacheCanvas)		
+			cacheList[i].updateCache();		
+	}		
+};		
+
+lib.addElementsToCache = function (textInst, cacheList) {		
+	var cur = textInst;		
+	while(cur != exportRoot) {		
+		if(cacheList.indexOf(cur) != -1)		
+			break;		
+		cur = cur.parent;		
+	}		
+	if(cur != exportRoot) {		
+		var cur2 = textInst;		
+		var index = cacheList.indexOf(cur);		
+		while(cur2 != cur) {		
+			cacheList.splice(index, 0, cur2);		
+			cur2 = cur2.parent;		
+			index++;		
+		}		
+	}		
+	else {		
+		cur = textInst;		
+		while(cur != exportRoot) {		
+			cacheList.push(cur);		
+			cur = cur.parent;		
+		}		
+	}		
+};		
+
+lib.gfontAvailable = function(family, totalGoogleCount) {		
+	lib.properties.webfonts[family] = true;		
+	var txtInst = lib.webFontTxtInst && lib.webFontTxtInst[family] || [];		
+	for(var f = 0; f < txtInst.length; ++f)		
+		lib.addElementsToCache(txtInst[f], gFontsUpdateCacheList);		
+
+	loadedGoogleCount++;		
+	if(loadedGoogleCount == totalGoogleCount) {		
+		lib.updateListCache(gFontsUpdateCacheList);		
+	}		
+};		
+
+lib.tfontAvailable = function(family, totalTypekitCount) {		
+	lib.properties.webfonts[family] = true;		
+	var txtInst = lib.webFontTxtInst && lib.webFontTxtInst[family] || [];		
+	for(var f = 0; f < txtInst.length; ++f)		
+		lib.addElementsToCache(txtInst[f], tFontsUpdateCacheList);		
+
+	loadedTypekitCount++;		
+	if(loadedTypekitCount == totalTypekitCount) {		
+		lib.updateListCache(tFontsUpdateCacheList);		
+	}		
+};
+// symbols:
+// helper functions:
+
+function mc_symbol_clone() {
+	var clone = this._cloneProps(new this.constructor(this.mode, this.startPosition, this.loop));
+	clone.gotoAndStop(this.currentFrame);
+	clone.paused = this.paused;
+	clone.framerate = this.framerate;
+	return clone;
+}
+
+function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
+	var prototype = cjs.extend(symbol, cjs.MovieClip);
+	prototype.clone = mc_symbol_clone;
+	prototype.nominalBounds = nominalBounds;
+	prototype.frameBounds = frameBounds;
+	return prototype;
+	}
+
+
+(lib.Path = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#FFFFFF").s().p("EjtnCNNMGOfkhqMBMvAioMnLOEGTg");
+	this.shape.setTransform(1520.8,950.2);
+
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.Path, new cjs.Rectangle(0,0,3041.5,1900.5), null);
+
+
+(lib.Overlay = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.instance = new lib.Path();
+	this.instance.parent = this;
+	this.instance.setTransform(-0.1,0,1,1,2.3,0,0,1520.6,950.2);
+	this.instance.alpha = 0.199;
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.Overlay, new cjs.Rectangle(-1557.1,-1009.9,3114.4,2019.9), null);
+
+
+// stage content:
+(lib.worldplayshowcasebkg = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Overlay
+	this.instance = new lib.Overlay();
+	this.instance.parent = this;
+	this.instance.setTransform(3156.8,1200.3,1,1,0,0,0,1520.5,950.2);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1).to({regX:0,regY:0,rotation:2.3,x:1636.3,y:250.1},0).wait(1).to({rotation:4.8},0).wait(1).to({rotation:7.1},0).wait(1).to({rotation:9.5},0).wait(1).to({rotation:11.9},0).wait(1).to({rotation:14.2},0).wait(1).to({rotation:16.6},0).wait(1).to({rotation:19},0).wait(1).to({rotation:21.3},0).wait(1).to({rotation:23.7},0).wait(1).to({rotation:26.1},0).wait(1).to({rotation:28.4},0).wait(1).to({rotation:30.8},0).wait(1).to({rotation:33.2},0).wait(1).to({rotation:35.5},0).wait(1).to({rotation:37.9},0).wait(1).to({rotation:40.3},0).wait(1).to({rotation:42.6},0).wait(1).to({rotation:45},0).wait(1).to({rotation:47.4},0).wait(1).to({rotation:49.8},0).wait(1).to({rotation:52.1},0).wait(1).to({rotation:54.5},0).wait(1).to({rotation:56.9},0).wait(1).to({rotation:59.2},0).wait(1).to({rotation:61.6},0).wait(1).to({rotation:64},0).wait(1).to({rotation:66.3},0).wait(1).to({rotation:68.7},0).wait(1).to({rotation:71.1},0).wait(1).to({rotation:73.4},0).wait(1).to({rotation:75.8},0).wait(1).to({rotation:78.2},0).wait(1).to({rotation:80.5},0).wait(1).to({rotation:82.9},0).wait(1).to({rotation:85.3},0).wait(1).to({rotation:87.6},0).wait(1).to({rotation:90},0).wait(1).to({rotation:92.4},0).wait(1).to({rotation:94.7},0).wait(1).to({rotation:97.1},0).wait(1).to({rotation:99.5},0).wait(1).to({rotation:101.9},0).wait(1).to({rotation:104.2},0).wait(1).to({rotation:106.6},0).wait(1).to({rotation:109},0).wait(1).to({rotation:111.3},0).wait(1).to({rotation:113.7},0).wait(1).to({rotation:116.1},0).wait(1).to({rotation:118.4},0).wait(1).to({rotation:120.8},0).wait(1).to({rotation:123.2},0).wait(1).to({rotation:125.5},0).wait(1).to({rotation:127.9},0).wait(1).to({rotation:130.3},0).wait(1).to({rotation:132.6},0).wait(1).to({rotation:135},0).wait(1).to({rotation:137.4},0).wait(1).to({rotation:139.7},0).wait(1).to({rotation:142.1},0).wait(1).to({rotation:144.5},0).wait(1).to({rotation:146.9},0).wait(1).to({rotation:149.2},0).wait(1).to({rotation:151.6},0).wait(1).to({rotation:154},0).wait(1).to({rotation:156.3},0).wait(1).to({rotation:158.7},0).wait(1).to({rotation:161.1},0).wait(1).to({rotation:163.4},0).wait(1).to({rotation:165.8},0).wait(1).to({rotation:168.2},0).wait(1).to({rotation:170.5},0).wait(1).to({rotation:172.9},0).wait(1).to({rotation:175.3},0).wait(1).to({rotation:177.6},0).wait(1).to({rotation:180},0).wait(1).to({rotation:182.4},0).wait(1).to({rotation:184.7},0).wait(1).to({rotation:187.1},0).wait(1).to({rotation:189.5},0).wait(1).to({rotation:191.8},0).wait(1).to({rotation:194.2},0).wait(1).to({rotation:196.6},0).wait(1).to({rotation:199},0).wait(1).to({rotation:201.3},0).wait(1).to({rotation:203.7},0).wait(1).to({rotation:206.1},0).wait(1).to({rotation:208.4},0).wait(1).to({rotation:210.8},0).wait(1).to({rotation:213.2},0).wait(1).to({rotation:215.5},0).wait(1).to({rotation:217.9},0).wait(1).to({rotation:220.3},0).wait(1).to({rotation:222.6},0).wait(1).to({rotation:225},0).wait(1).to({rotation:227.4},0).wait(1).to({rotation:229.7},0).wait(1).to({rotation:232.1},0).wait(1).to({rotation:234.5},0).wait(1).to({rotation:236.8},0).wait(1).to({rotation:239.2},0).wait(1).to({rotation:241.6},0).wait(1).to({rotation:244},0).wait(1).to({rotation:246.3},0).wait(1).to({rotation:248.7},0).wait(1).to({rotation:251.1},0).wait(1).to({rotation:253.4},0).wait(1).to({rotation:255.8},0).wait(1).to({rotation:258.2},0).wait(1).to({rotation:260.5},0).wait(1).to({rotation:262.9},0).wait(1).to({rotation:265.3},0).wait(1).to({rotation:267.6},0).wait(1).to({rotation:270},0).wait(1).to({rotation:272.4},0).wait(1).to({rotation:274.7},0).wait(1).to({rotation:277.1},0).wait(1).to({rotation:279.5},0).wait(1).to({rotation:281.8},0).wait(1).to({rotation:284.2},0).wait(1).to({rotation:286.6},0).wait(1).to({rotation:289},0).wait(1).to({rotation:291.3},0).wait(1).to({rotation:293.7},0).wait(1).to({rotation:296.1},0).wait(1).to({rotation:298.4},0).wait(1).to({rotation:300.8},0).wait(1).to({rotation:303.2},0).wait(1).to({rotation:305.5},0).wait(1).to({rotation:307.9},0).wait(1).to({rotation:310.3},0).wait(1).to({rotation:312.6},0).wait(1).to({rotation:315},0).wait(1).to({rotation:317.4},0).wait(1).to({rotation:319.7},0).wait(1).to({rotation:322.1},0).wait(1).to({rotation:324.5},0).wait(1).to({rotation:326.8},0).wait(1).to({rotation:329.2},0).wait(1).to({rotation:331.6},0).wait(1).to({rotation:333.9},0).wait(1).to({rotation:336.3},0).wait(1).to({rotation:338.7},0).wait(1).to({rotation:341.1},0).wait(1).to({rotation:343.4},0).wait(1).to({rotation:345.8},0).wait(1).to({rotation:348.2},0).wait(1).to({rotation:350.5},0).wait(1).to({rotation:352.9},0).wait(1).to({rotation:355.3},0).wait(1).to({rotation:357.6},0).wait(1).to({rotation:360},0).wait(1));
+
+	// Background
+	this.shape = new cjs.Shape();
+	this.shape.graphics.lf(["#085466","#036680","#02A9E0","#036680","#085466"],[0,0.098,0.541,0.851,1],-1381.5,383.5,1419,-373.2).s().p("EjqXAnEMAAAhOHMHUvAAAMAAABOHg");
+	this.shape.setTransform(1500,250);
+
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(153));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(1500,-509.8,3193.5,2019.9);
+// library properties:
+lib.properties = {
+	width: 3000,
+	height: 500,
+	fps: 30,
+	color: "#FFFFFF",
+	opacity: 1.00,
+	webfonts: {},
+	manifest: [],
+	preloads: []
+};
+
+
+
+
+})(lib = lib||{}, images = images||{}, createjs = createjs||{}, ss = ss||{}, AdobeAn = AdobeAn||{});
+var lib, images, createjs, ss, AdobeAn;
