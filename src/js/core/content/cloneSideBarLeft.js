@@ -1,0 +1,1 @@
+var cloneSideBarLeft = '<div class="blue-gradient-side-bar-left" id="side-bar-left"></div>';

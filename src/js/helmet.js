@@ -16,5 +16,7 @@ var helmet = '<meta charset="utf-8">' +
     '<link href="css/loader.css" rel="stylesheet">' +
     '<link href="css/admin-modal.css" rel="stylesheet">' +
     '<link href="css/iframe.css" rel="stylesheet">' +
-    '<link href="css/gradients.css" rel="stylesheet">';
+    '<link href="css/gradients.css" rel="stylesheet">' +
+    '<link href="css/main.css" rel="stylesheet">' +
+    '<link href="css/bg-video-parallax.css" rel="stylesheet">';
 $('head').prepend(helmet);

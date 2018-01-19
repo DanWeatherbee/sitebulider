@@ -1,0 +1,1 @@
+var cloneTopBar = '<div class="blue-gradient-btn" id="top-bar"></div>';

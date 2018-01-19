@@ -10,50 +10,72 @@
 // Variables begin ----------------------------------------------------|
 
 //   PROTYPLE SUPER CLASS
-var cloneMain = main,
-    mold = {
-        'cloneMain': cloneMain,
-        'cloneAdminModal': cloneAdminModal
-    },
 
-    FactoryClass = function(
-        // Dump in some material.
-        material
-    ) {
-        // Load Factory
-        this.material = material;
-    };
+var mold = {
+    'cloneSideBarLeft': cloneSideBarLeft,
+    'cloneBgVideoParallax': cloneBgVideoParallax,
+    'cloneNav': cloneNav,
+    'cloneTopBar': cloneTopBar,
+    'cloneAdminModal': cloneAdminModal,
+    'world': $
+};
+
+FactoryClass = function(
+    // Dump in some material.
+    material
+) {
+    // Load Factory
+    this.material = material;
+};
 
 FactoryClass.prototype.init = function() {
-    $('#root').prepend(builderObj.material.cloneAdminModal);
-};
-FactoryClass.prototype.edit = function() {
-    $('#main-header-h1').append(builderObj.material.cloneEditbox);
-    $('#edit-box').html(builderObj.material.cloneMain);
-};
-FactoryClass.prototype.destroyEdit = function() {
-    this.saveEdit();
-    this.animateHinge($('#edit-form'));
-    setTimeout(function() {
-        $('#edit-form').remove();
-    }, 3000);
+    this.render();
 
 };
-FactoryClass.prototype.saveEdit = function() {
-    // this works !! call save then destroy.
-    var usrInput = $('#edit-box').val();
-    localStorage.setItem('usrInput', usrInput);
-    console.log('saved.');
+
+FactoryClass.prototype.render = function() {
+    this.renderCloneAdminModal();
+    this.renderCloneBgVideoParallax();
 };
 
-FactoryClass.prototype.animateHinge = function(elem) {
-    this.elem = elem;
-    this.elem.addClass('animated hinge');
+FactoryClass.prototype.renderCloneAdminModal = function() {
+    this.material.world('#root').append(site.material.cloneAdminModal);
 };
 
-FactoryClass.prototype.baseImg = function(img) {
-    this.img = img;
-   // this.img.addClass('animated hinge');
+FactoryClass.prototype.rendercloneTopBar = function() {
+    this.material.world('#root').append(site.material.cloneTopBar);
 };
-var builderObj = new FactoryClass(mold);
-builderObj.init();
+
+FactoryClass.prototype.renderCloneBgVideoParallax = function() {
+    this.material.videoSrcStr = 'videos/mp4.mp4';
+    this.material.world('#root').append(site.material.cloneBgVideoParallax);
+};
+
+FactoryClass.prototype.renderCloneSideBarLeft = function() {
+    this.material.world('#root').append(site.material.cloneSideBarLeft);
+};
+
+FactoryClass.prototype.renderNav = function() {
+    this.material.world('#root').prepend(site.material.cloneNav);
+};
+
+FactoryClass.prototype.adminDefaultClick = function() {
+    this.renderNav();
+    this.rendercloneTopBar();
+    this.renderCloneSideBarLeft();
+};
+
+
+
+
+FactoryClass.prototype.adminEditedClick = function() {
+    alert('Edited was clicked!');
+};
+
+FactoryClass.prototype.adminModalCloseClick = function() {
+    alert('Admin close modal was clicked!');
+    site.material.world('#admin-modal').remove();
+};
+
+site = new FactoryClass(mold);
+site.init();
