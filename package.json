@@ -1,0 +1,22 @@
+{
+  "name": "sitebuilder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanWeatherbee/sitebulider.git"
+  },
+  "author": "Dan Weatherbee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanWeatherbee/sitebulider/issues"
+  },
+  "homepage": "https://github.com/DanWeatherbee/sitebulider#readme",
+  "devDependencies": {
+    "mdbootstrap": "^4.4.4"
+  }
+}
