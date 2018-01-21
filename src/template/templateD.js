@@ -1,0 +1,1 @@
+var tempD = header + parallax + footer;
