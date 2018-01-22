@@ -1,6 +1,7 @@
     //   PROTYPLE Factory SUPER CLASS
     var site,
         model = {
+            'bgSrc': bgSrc,
             'tempD': tempD,
             'header': header,
             'parallax': parallax,
@@ -17,29 +18,25 @@
         };
 
     F.prototype.init = function() {
-        this.con('init is running. line 19');
-        this.render();
-        this.events($('.navbar-brand').on('click', function() { // event 1
-            location.reload();
-        }));
+        this.render(); // render from storage
     };
     F.prototype.con = function(msg) { // console.
         this.msg = msg;
-        console.log('%cConsole %s', prettycon, this.msg);
+        console.log('%cHi Dan, this variable is ----> %s', prettycon, this.msg);
     };
     F.prototype.d = function() { // delete
-        this.con('dappete is running. line 32');
+        //this.con('delete is running. line 32');
         setTimeout(function() { // time out for animations to run.
 
         }, 3000);
     };
     F.prototype.h = function() { // hinge
-        this.con('animate is running. line 38');
+        //this.con('animate is running. line 38');
         this.app.addClass('animated hinge');
     };
     F.prototype.c = function(clone) { // clone
         this.clone = clone;
-        this.con('render is running. line 43');
+        //this.con('render is running. line 43');
         this.a('#root', this.model.header);
         this.a('#root', this.model.parallax);
         this.a('#root', this.model.footer);
@@ -49,7 +46,7 @@
         this.template = template;
         this.res = res;
         this.res = this.model.db.getItem('template');
-        this.con('template is running. line 52');
+        //this.con('template is running. line 52');
         return this.res;
     };
     F.prototype.setT = function(template) { //set template
@@ -60,12 +57,12 @@
         this.id = id;
         this.clone = clone;
         this.model.el(id).append(this.clone);
-        this.con('render is running. line 60');
+        //this.con('render is running. line 60');
     };
     F.prototype.p = function(id, clone) { // prepend
         this.id = id;
         this.clone = clone;
-        this.con('render is running. line 66');
+        //this.con('render is running. line 66');
         this.model.el(id).prepend(this.clone);
     };
     F.prototype.set = function(str1, str2) { // record
@@ -77,15 +74,87 @@
         this.str = str;
         this.model.db.getItem(this.str);
     };
-    F.prototype.events = function(event) { // events
+    F.prototype.event = function(event) { // events
         this.event = event;
+    };
+    F.prototype.sFile = function(data, templateJson) { // save to json
+        this.data = data;
+        //this.con(this.data);
+        this.data = JSON.stringify(this.data);
+        //this.con(this.data);
+        this.templateJson = new File([this.data], "template.json", { type: "text/plain;charset=utf-8" });
+        saveAs(this.templateJson);
     };
     F.prototype.render = function(template) { // events
         this.template = template;
-        this.setT('tempD', this.model.tempD);
-        this.a('#root', this.getT());// load from localstorage
+        // these should be in a save to storage function.
+        this.setT('tempD', this.model.tempD); // save to localstorage
+        this.set('bgSrc', this.model.bgSrc);
+        // where to render from.
+        //this.renderEdit();
+        //this.renderDefault();
+        this.renderApi();
+        /*
+         * Console Copyright display. ================|
+         */
+        // this.con(copyright); // load copyright
+        /*
+         * Console Copyright display. ================|
+         */
+        this.event($('.fa-save').on('click', function() { // event 1
+            site.sFile(site.getT()); // from storage.
+        }));
+    };
+    F.prototype.renderEdit = function() { // events
+        this.a('#root', this.getT()); // load from localstorage
+        this.con('rendering the site from storage.')
+    };
+    F.prototype.renderDefault = function(template) { // events
+        this.template = template;
+        this.a('#root', this.model.tempD); // load from Super Class
+        this.con('rendering the site from your Super Class.');
+    };
+    F.prototype.renderApi = function(template) { // events
+        this.template = template;
+        this.getJ('template.json');
+        this.con('rendering the site from your api.');
+    };
+    F.prototype.getJ = function(file) { // file
+        this.file = file;
+        fetch(this.file)
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        site.con('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        site.con('check to see if the json file is in the src folder.');
+                        //==================== if there is no api function to write===|
+                        site.a('#root', '<div class="container text-center"><h1 class="text-center">There was no file to load, check your src folder for the template json file. e.g. template.json. If it is not there click the create json button to make a new one. Place it in the src folder and test.</h1><a class="btn btn-lg btn-primary" id="create-json">Create Json</a></div>');
+
+                        site.event($('#create-json').on('click', function() { // event 1
+                            site.sFile(site.getT()); // get from storage.
+                        }));
+                        // =============================================|
+                    }
+                    response.json().then(function(data) {
+                        //site.con(data);
+                        site.a('#root', data); // Append the response.
+                    });
+                }
+            )
+            .catch(function(err) {
+                site.con('Fetch Error :-S', err);
+            });
+        this.con('fetching json file template.json. getJ was called.');
     };
 
     site = new F(model); // instantiate.
-    site.con("%cJavascript %s", prettycon, copyright);
     site.init();
+
+    site.con('TODO try removing // out of img src. see if it still renders.');
+    site.con('TODO add admin panel with controls.');
+    site.con('TODO add log in first thing you see to get to admin panel.');
+    site.con('TODO add json function.....Done!');
+    site.con('TODO fix get json function.............Done!');
+    site.con('TODO style the api msg and add background.');
+    site.con('TODO create three buttons for rendering options. or 1 with drop down.');
