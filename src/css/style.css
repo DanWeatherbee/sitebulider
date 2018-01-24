@@ -1,29 +1,27 @@
 /* Your custom styles */
 
 .view {
-    background: url("https://mdbootstrap.com/img/Photos/Others/img (40).jpg")no-repeat center center;
+    background: url("css/power.png")no-repeat center center;
     background-size: cover;
 }
 
+
+
+/*
 .overlay1 {
     height: 1000px;
-    background: url('css/bg.png') no-repeat center center;
+    background: url('css/sitebuilder.png') no-repeat center center;
     width: auto;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}*/
+
+ul {
+    list-style-type: none;
 }
-#nav-status {
-    color: red;
-    background-color: midnightblue;
-    max-height: 25px;
-    padding-top: 2px;
-    position: absolute;
-    width: 100%;
-    bottom:-35%;
-    left: 0;
-}
+
 #api-error-msg {
     margin-top: 10%;
     max-width: 50%;
@@ -33,9 +31,10 @@
     background-color: transparent;
 }
 
-.btn-panel {
-    background: url('css/buttons.png') no-repeat center;
-    width: auto;
+
+
+body {
+    background-color: darkslategrey;
 }
 
 .top-nav-collapse {
@@ -46,23 +45,26 @@
     max-width: 75px;
 }
 
-#admin-panel {
-    opacity: .6;
-    position: fixed;
-    top: 10%;
-    left: 0%;
+#edit-template-btn {
     z-index: 1;
+}
+
+#admin-panel {
+    background-color: lightgrey;
+    color: red;
+}
+
+#admin-panel>ul>li {
+    min-width: 100px;
+}
+
+#admin-panel,
+#cover-parallax {
+    opacity: .9;
 }
 
 @media only screen and (max-width: 768px) {
     .navbar {
         background-color: #4285F4;
-    }
-    #api-error-msg>h1 {
-        font-size: 1em;
-        position: absolute;
-        right: 0;
-        top: 25%;
-        padding: 2%;
     }
 }

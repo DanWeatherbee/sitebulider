@@ -1,1 +1,1 @@
-var tempD = header + parallax + footer;
+var tempD = nav;
