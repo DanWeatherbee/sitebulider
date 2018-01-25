@@ -10,5 +10,6 @@ var todoArray = [
     'TODO add in some basic clones that all sites typically use. e.g. nav, footer, login etc.',
     'TODO display status msgs e.g. TODOS and errors on the main page.',
     'TODO add delete function to remove elements.',
+    'TODO https://css-tricks.com/using-requestanimationframe/',
     'TODO use localStorage  to count logins and visitors.'
 ];

@@ -12,7 +12,10 @@ var site,
         'nav': nav,
         'parallax': parallax,
         'footer': footer,
+        'videoIntro': videoIntro,
         'renderOptions': renderOptions,
+        'projects': projects,
+        'commerce': commerce,
         'todoArray': todoArray,
         'app': $('#root'),
         'el': $,
@@ -199,6 +202,30 @@ F.prototype.renderParallax = function() { // render from api.
 };
 F.prototype.destroyParallax = function() { // render from api.
     this.animateH(parallaxId);
+};
+F.prototype.renderFooter = function() { // render from api.
+    this.model.app.append(this.model.footer);
+};
+F.prototype.destroyFooter = function() { // render from api.
+    this.animateH(footerId);
+};
+F.prototype.renderVideoIntro = function() { // render from api.
+    this.model.app.append(this.model.videoIntro);
+};
+F.prototype.destroyVideoIntro = function() { // render from api.
+    this.animateH(videoIntroId);
+};
+F.prototype.renderProjects = function() { // render from api.
+    this.model.app.append(this.model.projects);
+};
+F.prototype.destroyProjects = function() { // render from api.
+    this.animateH(projectsId);
+};
+F.prototype.renderCommerce = function() { // render from api.
+    this.model.app.append(this.model.commerce);
+};
+F.prototype.destroyCommerce = function() { // render from api.
+    this.animateH(commerceId);
 };
 F.prototype.clearHtml = function(
     id
