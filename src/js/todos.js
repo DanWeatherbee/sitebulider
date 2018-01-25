@@ -11,5 +11,6 @@ var todoArray = [
     'TODO display status msgs e.g. TODOS and errors on the main page.',
     'TODO add delete function to remove elements.',
     'TODO https://css-tricks.com/using-requestanimationframe/',
+    'TODO use % replacement for variables',
     'TODO use localStorage  to count logins and visitors.'
 ];

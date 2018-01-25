@@ -10,6 +10,7 @@ var site,
         'bgSrc': bgSrc,
         'tempD': tempD,
         'nav': nav,
+        'angryCatSrc': angryCatSrc,
         'parallax': parallax,
         'footer': footer,
         'videoIntro': videoIntro,
@@ -123,7 +124,8 @@ F.prototype.get = function(
 };
 F.prototype.sFile = function(
     data,
-    templateJson
+    templateJson,
+    yourEdits
 ) { // save to json.
     this.data = data;
     this.data = JSON.stringify(this.data);
@@ -133,7 +135,25 @@ F.prototype.sFile = function(
     );
     saveAs(this.templateJson);
     this.setT(this.model.tempD);
+
+
 };
+F.prototype.sFileEdits = function(
+    data,
+    yourEdits
+) { // save to json.
+    this.data = data;
+    this.data = JSON.stringify(this.data);
+    this.yourEdits = new File(
+        [this.data],
+        "yourEdits.json", { type: "text/plain;charset=utf-8" }
+    );
+    saveAs(this.yourEdits);
+    this.setT(this.model.tempD);
+
+
+};
+
 F.prototype.renderStorage = function() { // render your edits.
     this.setT('temlate', this.model.tempD)
     this.clearHtml(this.model.app);
@@ -144,12 +164,6 @@ F.prototype.renderStorage = function() { // render your edits.
     this.con(
         'rendering the site from storage.'
     );
-    // this.a(
-    //     '#nav-status', this.getDate() +
-    //     '--------- Rendering the site from Storage.' +
-    //     videoClose +
-    //     coverClose
-    // );
 };
 F.prototype.getDate = function(
     d
@@ -173,16 +187,10 @@ F.prototype.renderDefault = function(
     this.con(
         'rendering the site from your Class.'
     );
-    // this.a(
-    //     '#nav-status', this.getDate() +
-    //     '--------- Rendering the site from Template.' +
-    //     videoClose +
-    //     coverClose
-    // );
 };
 F.prototype.renderApi = function(
     template
-) { // render from api.
+) {
     this.template = template;
     this.getJ(
         'template.json'
@@ -190,42 +198,75 @@ F.prototype.renderApi = function(
     this.con(
         'rendering the site from your api.'
     );
-    // this.a(
-    //     '#nav-status', this.getDate() +
-    //     '--------- Rendering the site from Api.' +
-    //     videoClose +
-    //     coverClose // TODO add to models.
-    // );
 };
-F.prototype.renderParallax = function() { // render from api.
+F.prototype.renderParallax = function() {
     this.model.app.append(this.model.parallax);
 };
-F.prototype.destroyParallax = function() { // render from api.
+F.prototype.destroyParallax = function() {
     this.animateH(parallaxId);
 };
-F.prototype.renderFooter = function() { // render from api.
+F.prototype.renderFooter = function() {
     this.model.app.append(this.model.footer);
 };
-F.prototype.destroyFooter = function() { // render from api.
+F.prototype.destroyFooter = function() {
     this.animateH(footerId);
 };
-F.prototype.renderVideoIntro = function() { // render from api.
+F.prototype.renderVideoIntro = function() {
     this.model.app.append(this.model.videoIntro);
 };
-F.prototype.destroyVideoIntro = function() { // render from api.
+F.prototype.destroyVideoIntro = function() {
     this.animateH(videoIntroId);
 };
-F.prototype.renderProjects = function() { // render from api.
+F.prototype.renderProjects = function() {
     this.model.app.append(this.model.projects);
 };
-F.prototype.destroyProjects = function() { // render from api.
+F.prototype.destroyProjects = function() {
     this.animateH(projectsId);
 };
-F.prototype.renderCommerce = function() { // render from api.
+F.prototype.renderCommerce = function() {
     this.model.app.append(this.model.commerce);
 };
-F.prototype.destroyCommerce = function() { // render from api.
+F.prototype.destroyCommerce = function() {
     this.animateH(commerceId);
+};
+F.prototype.editSave = function(val) {
+    this.val = this.model.el('#edit-area').val();
+    this.set('yourEdits', this.val);
+    this.a(
+        '#status-bar', this.getDate() +
+        'Status | Your edits were saved to your downloads folder under the name yourEdits.'
+    );
+    site.animateP('#status-bar');
+};
+F.prototype.editDownload = function() {
+    this.editSave();
+    this.sFileEdits(this.model.db.getItem('yourEdits'));
+};
+F.prototype.renderNav = function() {
+    this.model.app.prepend(this.model.nav);
+};
+
+F.prototype.editNav = function() {
+    this.model.el(editId).val(this.model.nav);
+        this.a(
+        '#status-bar', this.getDate() +
+        'Status | A copy of the nav clone has been pasted into the edit area.'
+    );
+    site.animateP('#status-bar');
+};
+F.prototype.editTemplate = function() {
+    this.model.el(editId).val(this.model.app.html());
+        this.a(
+        '#status-bar', this.getDate() +
+        'Status | A copy of the template has been pasted into the edit area.'
+    );
+    site.animateP('#status-bar');
+};
+F.prototype.destroyNav = function() {
+    this.animateH(navId);
+};
+F.prototype.destroyAdmin = function() {
+    this.animateH(panelId);
 };
 F.prototype.clearHtml = function(
     id
@@ -270,12 +311,7 @@ F.prototype.getJ = function(
         'fetching json file template.json. getJ was called.'
     );
 };
-F.prototype.editTemplate = function() { // Edit template.
-    alert(
-        'Hi I am working but i am not hooked up yet.'
-    );
 
-};
 F.prototype.animateH = function(
     id
 ) { // Add animation.
@@ -297,6 +333,16 @@ F.prototype.animateP = function(
     ).addClass(
         'animated pulse'
     );
+
+    setTimeout(function() {
+        site.model.el(
+            site.id
+        ).removeClass(
+            'animated pulse'
+        );
+    }, 1000);
+
+
 };
 
 F.prototype.todos = function() { // load TODOS.
