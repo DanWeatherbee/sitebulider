@@ -1,11 +1,11 @@
 var editId = '#edit-area',
-tabId = '.tab-content',
+    tabId = '.tab-content',
     panelId = '#admin-panel',
     renderOptions = '<!-- ADMIN -->' +
     '<!--Nav tabs--><div class="tabs-wrapper grad-nav-v" id="admin-panel"><ul class="nav classic-tabs tabs-cyan"role="tablist"><li class="nav-item"><a class="nav-link waves-light active"data-toggle="tab"href="#panel1"role="tab">Rendering</a></li><li class="nav-item"><a class="nav-link waves-light"data-toggle="tab"href="#panel2"role="tab">Navagation</a></li><li class="nav-item"><a class="nav-link waves-light"data-toggle="tab"href="#panel3"role="tab">Parallax</a></li><li class="nav-item"><a class="nav-link waves-light"data-toggle="tab"href="#panel4"role="tab">Footers</a></li><li class="nav-item"><a class="nav-link waves-light"data-toggle="tab"href="#panel5"role="tab">Clones</a></li><li class="nav-item"><a class="nav-link waves-light"data-toggle="tab"href="#panel6"role="tab">Edit</a></li>' +
 
 
-    '<a onClick="site.sFile(site.model.tempD)"><strong class="white-txt">|Save</strong><i class="fa fa-save btn btn-lg"area-attributes="hidden"></i></a>' +
+    '<a onClick="site.sFile(site.model.tempD)"><strong class="white-txt">|Download Default</strong><i class="fa fa-download btn btn-lg"area-attributes="hidden"></i></a>' +
     '<a onClick="site.editTemplate()"><strong class="white-txt">|Edit Template</strong><i class="fa fa-edit btn btn-lg"area-attributes="hidden"></i></a>' +
     '<a onClick="site.editNav()"><strong class="white-txt">|Edit Nav</strong><i class="fa fa-edit btn btn-lg"area-attributes="hidden"></i></a>' +
 

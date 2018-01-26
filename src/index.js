@@ -142,20 +142,18 @@ F.prototype.sFileEdits = function(
     data,
     yourEdits
 ) { // save to json.
+
     this.data = data;
     this.data = JSON.stringify(this.data);
     this.yourEdits = new File(
         [this.data],
-        "yourEdits.json", { type: "text/plain;charset=utf-8" }
+        "template.json", { type: "text/plain;charset=utf-8" }
     );
     saveAs(this.yourEdits);
-    this.setT(this.model.tempD);
-
-
+    this.set('template', this.model.el('#edit-area').val());
 };
 
 F.prototype.renderStorage = function() { // render your edits.
-    this.setT('temlate', this.model.tempD)
     this.clearHtml(this.model.app);
     this.model.app.append(
         this.getT(
@@ -164,6 +162,11 @@ F.prototype.renderStorage = function() { // render your edits.
     this.con(
         'rendering the site from storage.'
     );
+    this.a(
+        '#status-bar', this.getDate() +
+        'Status | The site is rendering the site from the browsers loacalstorage.'
+    );
+    site.animateP('#status-bar');
 };
 F.prototype.getDate = function(
     d
@@ -187,6 +190,11 @@ F.prototype.renderDefault = function(
     this.con(
         'rendering the site from your Class.'
     );
+    this.a(
+        '#status-bar', this.getDate() +
+        'Status | The site is rendering the site from the internal code.'
+    );
+    site.animateP('#status-bar');
 };
 F.prototype.renderApi = function(
     template
@@ -198,6 +206,11 @@ F.prototype.renderApi = function(
     this.con(
         'rendering the site from your api.'
     );
+    this.a(
+        '#status-bar', this.getDate() +
+        'Status | The site is rendering the site from your api.'
+    );
+    site.animateP('#status-bar');
 };
 F.prototype.renderParallax = function() {
     this.model.app.append(this.model.parallax);
@@ -231,7 +244,7 @@ F.prototype.destroyCommerce = function() {
 };
 F.prototype.editSave = function(val) {
     this.val = this.model.el('#edit-area').val();
-    this.set('yourEdits', this.val);
+    this.set('template', this.val);
     this.a(
         '#status-bar', this.getDate() +
         'Status | Your edits were saved to your downloads folder under the name yourEdits.'
@@ -240,7 +253,7 @@ F.prototype.editSave = function(val) {
 };
 F.prototype.editDownload = function() {
     this.editSave();
-    this.sFileEdits(this.model.db.getItem('yourEdits'));
+    this.sFileEdits(this.model.db.getItem('template'));
 };
 F.prototype.renderNav = function() {
     this.model.app.prepend(this.model.nav);
@@ -248,15 +261,15 @@ F.prototype.renderNav = function() {
 
 F.prototype.editNav = function() {
     this.model.el(editId).val(this.model.nav);
-        this.a(
+    this.a(
         '#status-bar', this.getDate() +
         'Status | A copy of the nav clone has been pasted into the edit area.'
     );
     site.animateP('#status-bar');
 };
 F.prototype.editTemplate = function() {
-    this.model.el(editId).val(this.model.app.html());
-        this.a(
+    this.model.el('#edit-area').val(this.model.db.getItem('template'));
+    this.a(
         '#status-bar', this.getDate() +
         'Status | A copy of the template has been pasted into the edit area.'
     );
@@ -299,8 +312,8 @@ F.prototype.getJ = function(
                     );
                 }
                 response.json().then(function(data) {
-                    //site.con(data);
-                    site.model.app(data); // Append the response.
+                    site.con(data);
+                    site.model.app.append(data); // Append the response.
                 });
             }
         )
