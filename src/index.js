@@ -17,6 +17,7 @@ var site,
         'renderOptions': renderOptions,
         'projects': projects,
         'commerce': commerce,
+        'carousel': carousel,
         'todoArray': todoArray,
         'app': $('#root'),
         'el': $,
@@ -31,6 +32,7 @@ F.prototype.init = function() {
     this.model.app.append(
         this.model.renderOptions
     );
+
 
 };
 F.prototype.con = function(
@@ -134,7 +136,7 @@ F.prototype.sFile = function(
         "template.json", { type: "text/plain;charset=utf-8" }
     );
     saveAs(this.templateJson);
-    this.setT(this.model.tempD);
+
 
 
 };
@@ -153,10 +155,15 @@ F.prototype.sFileEdits = function(
     this.set('template', this.model.el('#edit-area').val());
 };
 
+
+
+
+
 F.prototype.renderStorage = function() { // render your edits.
     this.clearHtml(this.model.app);
+
     this.model.app.append(
-        this.getT(
+        this.model.db.getItem(
             'template'
         )); // load from localstorage.
     this.con(
@@ -167,7 +174,15 @@ F.prototype.renderStorage = function() { // render your edits.
         'Status | The site is rendering the site from the browsers loacalstorage.'
     );
     site.animateP('#status-bar');
+    setTimeout(function() {
+        $('.button-collapse').sideNav(); // side nav control initstantiate.
+    }, 3000);
 };
+
+
+
+
+
 F.prototype.getDate = function(
     d
 ) { // render your edits.
@@ -195,6 +210,9 @@ F.prototype.renderDefault = function(
         'Status | The site is rendering the site from the internal code.'
     );
     site.animateP('#status-bar');
+    setTimeout(function() {
+        $('.button-collapse').sideNav(); // side nav control initstantiate.
+    }, 3000);
 };
 F.prototype.renderApi = function(
     template
@@ -211,6 +229,9 @@ F.prototype.renderApi = function(
         'Status | The site is rendering the site from your api.'
     );
     site.animateP('#status-bar');
+    setTimeout(function() {
+        $('.button-collapse').sideNav(); // side nav control initstantiate.
+    }, 3000);
 };
 F.prototype.renderParallax = function() {
     this.model.app.append(this.model.parallax);
@@ -242,9 +263,17 @@ F.prototype.renderCommerce = function() {
 F.prototype.destroyCommerce = function() {
     this.animateH(commerceId);
 };
+F.prototype.renderCarousel = function() {
+    this.model.app.append(this.model.carousel);
+};
+F.prototype.destroyCarousel = function() {
+    this.animateH(carouselId);
+};
+
 F.prototype.editSave = function(val) {
     this.val = this.model.el('#edit-area').val();
-    this.set('template', this.val);
+    this.model.tempD = this.val;
+    this.set('template', this.model.tempD);
     this.a(
         '#status-bar', this.getDate() +
         'Status | Your edits were saved to your downloads folder under the name yourEdits.'
@@ -259,16 +288,8 @@ F.prototype.renderNav = function() {
     this.model.app.prepend(this.model.nav);
 };
 
-F.prototype.editNav = function() {
-    this.model.el(editId).val(this.model.nav);
-    this.a(
-        '#status-bar', this.getDate() +
-        'Status | A copy of the nav clone has been pasted into the edit area.'
-    );
-    site.animateP('#status-bar');
-};
 F.prototype.editTemplate = function() {
-    this.model.el('#edit-area').val(this.model.db.getItem('template'));
+    this.model.el('#edit-area').val(this.model.app.html());
     this.a(
         '#status-bar', this.getDate() +
         'Status | A copy of the template has been pasted into the edit area.'
@@ -293,12 +314,14 @@ F.prototype.getJ = function(
     file
 ) { // get json file template.json.
     this.file = file;
+
     fetch(
             this.file
         )
         .then(
             function(response) {
                 if (response.status !== 200) {
+
                     site.con(
                         'Looks like there was a problem. Status Code: ' +
                         response.status
@@ -312,8 +335,8 @@ F.prototype.getJ = function(
                     );
                 }
                 response.json().then(function(data) {
-                    site.con(data);
-                    site.model.app.append(data); // Append the response.
+                    this.model.db.removeItem('template');
+                    this.model.app.append(data); // Append the response.
                 });
             }
         )
@@ -367,4 +390,5 @@ site = new F(
     model
 ); // instantiate.
 site.init();
+$(".button-collapse").sideNav();
 //site.todos();

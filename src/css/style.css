@@ -5,21 +5,20 @@
     background-size: cover;
 }
 
-#status-bar {
+/*#status-bar {
     border-radius: 10% 10% 0 100%;
     position: absolute;
     left: 0;
-    top: 50px;
-    z-index: 2;
+    top: -90%;
+    z-index: 999;
 }
 
 #admin-panel {
-
     position: fixed;
-    top: 220px;
-    z-index: 5;
-    opacity: .9;
-}
+    top: 50px;
+    right: 2%;
+    z-index: 999;
+}*/
 
 .black-txt-shadow {
     text-shadow: 0 1px 0 black;
@@ -47,6 +46,7 @@
     overflow-y: scroll;
     margin-top: 4.5%;
     padding-top: 2%;
+    max-width: 65%;
 }
 
 .tab-pane {
@@ -65,7 +65,7 @@
 }
 
 .nav-link {
-    background-color: gold;
+    background-color: #447b46;
 }
 
 .fa {
@@ -138,8 +138,29 @@
     /* IE6-9 */
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1300px) {
+    #admin-panel {
+        position: fixed;
+        top: 80%;
+        right: 0;
+        z-index: 999;
+    }
+    #status-bar {
+        border-radius: 10% 10% 0 100%;
+        position: absolute;
+        left: 0;
+        top: 98%;
+        z-index: 999;
+    }
+}
+@media only screen and (max-width: 700px) {
     .navbar {
         background-color: #4285F4;
+    }
+    #admin-panel {
+        position: fixed;
+        top: 70%;
+        right: 0;
+        z-index: 999;
     }
 }

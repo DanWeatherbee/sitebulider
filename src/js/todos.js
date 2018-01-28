@@ -12,5 +12,6 @@ var todoArray = [
     'TODO add delete function to remove elements.',
     'TODO https://css-tricks.com/using-requestanimationframe/',
     'TODO use % replacement for variables',
+    'TODO when yuo click api it goes to the edit pane- fix it.',
     'TODO use localStorage  to count logins and visitors.'
 ];
