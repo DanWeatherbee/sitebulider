@@ -1,166 +1,46 @@
-/* Your custom styles */
-
-.view {
-    background: url("css/power.png")no-repeat center center;
-    background-size: cover;
-}
-
-/*#status-bar {
-    border-radius: 10% 10% 0 100%;
+#edit-area {
+    resize: both;
+    overflow: auto;
+    height: 800px;
+    width: 80%;
     position: absolute;
-    left: 0;
-    top: -90%;
-    z-index: 999;
-}
-
-#admin-panel {
-    position: fixed;
-    top: 50px;
-    right: 2%;
-    z-index: 999;
-}*/
-
-.black-txt-shadow {
-    text-shadow: 0 1px 0 black;
-}
-
-.grad-circle {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,383720+63 */
-    background: #000000;
-    /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover, #000000 0%, #383720 63%);
-    /* FF3.6-15 */
-    background: -webkit-radial-gradient(center, ellipse cover, #000000 0%, #383720 63%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: radial-gradient(ellipse at center, #000000 0%, #383720 63%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#383720', GradientType=1);
-    /* IE6-9 fallback on horizontal gradient */
-}
-
-.md-form>textarea {
-    color: lawngreen;
-    text-shadow: 0 2px 0 black;
-    height: 650px;
-    font-size: 1.5em;
-    overflow-y: scroll;
-    margin-top: 4.5%;
-    padding-top: 2%;
-    max-width: 65%;
-}
-
-.tab-pane {
-    padding-top: 4%;
-    z-index: 1;
-}
-
-.md-form>i {
-
-    background-color: grey;
-    font-size: 1.5em;
-}
-
-.white-txt {
-    color: white;
-}
-
-.nav-link {
-    background-color: #447b46;
+    right: 0;
 }
 
 .fa {
-    color: red;
-    text-shadow: 0 1px 0 white;
-}
-
-#api-error-msg {
-    margin-top: 10%;
-    max-width: 50%;
-}
-
-.navbar {
-    background-color: transparent;
-}
-
-.top-nav-collapse {
-    background-color: #4285F4;
-}
-
-#angry-cat-img {
-    max-width: 75px;
-}
-
-#edit-template-btn {
-    z-index: 1;
-}
-
-.bg-color-black {
     background-color: black;
 }
 
-.bg-color-white {
-    background-color: white;
+.top-nav-collapse {
+    background-color: #82b1ff !important;
 }
 
-.avatar>img {
-    width: 75%;
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
 }
 
-.navbar>img {
-    width: 2%;
-}
-
-.grad-nav-h {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#abfcb5+0,1df9ac+4,33000e+9,33000e+9,913e86+14,7a6800+19,7a6800+19,000c08+21,7a6800+22,7a6800+27,7a6800+27,000c08+27,000c08+55,000c08+65,e2b900+83,000c08+83,000c08+83,33000e+95,5de263+96 */
-    background: #abfcb5;
-    /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #abfcb5 0%, #1df9ac 4%, #33000e 9%, #33000e 9%, #913e86 14%, #7a6800 19%, #7a6800 19%, #000c08 21%, #7a6800 22%, #7a6800 27%, #7a6800 27%, #000c08 27%, #000c08 55%, #000c08 65%, #e2b900 83%, #000c08 83%, #000c08 83%, #33000e 95%, #5de263 96%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #abfcb5 0%, #1df9ac 4%, #33000e 9%, #33000e 9%, #913e86 14%, #7a6800 19%, #7a6800 19%, #000c08 21%, #7a6800 22%, #7a6800 27%, #7a6800 27%, #000c08 27%, #000c08 55%, #000c08 65%, #e2b900 83%, #000c08 83%, #000c08 83%, #33000e 95%, #5de263 96%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #abfcb5 0%, #1df9ac 4%, #33000e 9%, #33000e 9%, #913e86 14%, #7a6800 19%, #7a6800 19%, #000c08 21%, #7a6800 22%, #7a6800 27%, #7a6800 27%, #000c08 27%, #000c08 55%, #000c08 65%, #e2b900 83%, #000c08 83%, #000c08 83%, #33000e 95%, #5de263 96%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#abfcb5', endColorstr='#5de263', GradientType=1);
-    /* IE6-9 fallback on horizontal gradient */
-}
-
-.grad-nav-v {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#abfcb5+0,1df9ac+4,33000e+9,33000e+9,913e86+14,7a6800+19,7a6800+19,000c08+21,7a6800+22,7a6800+27,7a6800+27,000c08+27,000c08+55,000c08+65,e2b900+83,000c08+83,000c08+83,33000e+95,5de263+96 */
-    background: #abfcb5;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #abfcb5 0%, #1df9ac 4%, #33000e 9%, #33000e 9%, #913e86 14%, #7a6800 19%, #7a6800 19%, #000c08 21%, #7a6800 22%, #7a6800 27%, #7a6800 27%, #000c08 27%, #000c08 55%, #000c08 65%, #e2b900 83%, #000c08 83%, #000c08 83%, #33000e 95%, #5de263 96%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #abfcb5 0%, #1df9ac 4%, #33000e 9%, #33000e 9%, #913e86 14%, #7a6800 19%, #7a6800 19%, #000c08 21%, #7a6800 22%, #7a6800 27%, #7a6800 27%, #000c08 27%, #000c08 55%, #000c08 65%, #e2b900 83%, #000c08 83%, #000c08 83%, #33000e 95%, #5de263 96%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #abfcb5 0%, #1df9ac 4%, #33000e 9%, #33000e 9%, #913e86 14%, #7a6800 19%, #7a6800 19%, #000c08 21%, #7a6800 22%, #7a6800 27%, #7a6800 27%, #000c08 27%, #000c08 55%, #000c08 65%, #e2b900 83%, #000c08 83%, #000c08 83%, #33000e 95%, #5de263 96%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#abfcb5', endColorstr='#5de263', GradientType=0);
-    /* IE6-9 */
-}
-
-@media only screen and (max-width: 1300px) {
-    #admin-panel {
-        position: fixed;
-        top: 80%;
-        right: 0;
-        z-index: 999;
-    }
-    #status-bar {
-        border-radius: 10% 10% 0 100%;
-        position: absolute;
-        left: 0;
-        top: 98%;
-        z-index: 999;
+@media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+        background: #82b1ff !important;
     }
 }
-@media only screen and (max-width: 700px) {
-    .navbar {
-        background-color: #4285F4;
+
+h5 {
+    letter-spacing: 3px;
+}
+
+.jarallax {
+    height: 1000px;
+}
+
+@media (max-width: 740px) {
+    .jarallax {
+        height: 300px;
     }
-    #admin-panel {
-        position: fixed;
-        top: 70%;
-        right: 0;
-        z-index: 999;
+}
+
+@media (min-width: 769px) and (max-width: 1025px) {
+    .jarallax {
+        height: 500px;
     }
 }

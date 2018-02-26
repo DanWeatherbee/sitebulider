@@ -9,15 +9,7 @@ var site,
     model = {
         'bgSrc': bgSrc,
         'tempD': tempD,
-        'nav': nav,
-        'angryCatSrc': angryCatSrc,
-        'parallax': parallax,
-        'footer': footer,
-        'videoIntro': videoIntro,
-        'renderOptions': renderOptions,
-        'projects': projects,
-        'commerce': commerce,
-        'carousel': carousel,
+        'edit': edit,
         'todoArray': todoArray,
         'app': $('#root'),
         'el': $,
@@ -29,11 +21,7 @@ var site,
         this.model = model;
     };
 F.prototype.init = function() {
-    this.model.app.append(
-        this.model.renderOptions
-    );
-
-
+    this.renderDefault();
 };
 F.prototype.con = function(
     msg
@@ -63,24 +51,7 @@ F.prototype.del = function(
         this.id
     ).remove();
 };
-F.prototype.getT = function(
-    template,
-    res
-) { // get template
-    this.template = template;
-    this.res = res;
-    this.res = this.model.db.getItem('template');
-    return this.res;
-};
-F.prototype.setT = function(
-    template
-) { //set template
-    this.template = template;
-    this.model.db.setItem(
-        'template',
-        this.model.tempD
-    );
-};
+
 F.prototype.a = function(
     id,
     clone
@@ -107,23 +78,7 @@ F.prototype.p = function(
         this.clone
     );
 };
-F.prototype.set = function(
-    str1,
-    str2
-) { // record
-    this.str1 = str1;
-    this.str2 = str2;
-    this.model.db.setItem(
-        this.str1,
-        this.str2
-    );
-};
-F.prototype.get = function(
-    str
-) { // get
-    this.str = str;
-    this.model.db.getItem(this.str);
-};
+
 F.prototype.sFile = function(
     data,
     templateJson,
@@ -137,51 +92,7 @@ F.prototype.sFile = function(
     );
     saveAs(this.templateJson);
 
-
-
 };
-F.prototype.sFileEdits = function(
-    data,
-    yourEdits
-) { // save to json.
-
-    this.data = data;
-    this.data = JSON.stringify(this.data);
-    this.yourEdits = new File(
-        [this.data],
-        "template.json", { type: "text/plain;charset=utf-8" }
-    );
-    saveAs(this.yourEdits);
-    this.set('template', this.model.el('#edit-area').val());
-};
-
-
-
-
-
-F.prototype.renderStorage = function() { // render your edits.
-    this.clearHtml(this.model.app);
-
-    this.model.app.append(
-        this.model.db.getItem(
-            'template'
-        )); // load from localstorage.
-    this.con(
-        'rendering the site from storage.'
-    );
-    this.a(
-        '#status-bar', this.getDate() +
-        'Status | The site is rendering the site from the browsers loacalstorage.'
-    );
-    site.animateP('#status-bar');
-    setTimeout(function() {
-        $('.button-collapse').sideNav(); // side nav control initstantiate.
-    }, 3000);
-};
-
-
-
-
 
 F.prototype.getDate = function(
     d
@@ -191,48 +102,70 @@ F.prototype.getDate = function(
     return this.d;
 };
 
+
+F.prototype.edit = function(val) {
+    this.model.app.html('');
+    this.model.app.append(this.model.edit);
+
+    this.model.el('#edit-area').val(this.model.db.getItem(
+        'template'
+    ));
+};
+
+F.prototype.editSave = function(val) {
+    this.val = this.model.el('#edit-area').val();
+
+    this.model.db.setItem('template', this.val);
+
+    this.model.db.getItem(
+        'template'
+    );
+
+    site.animateH('.edit-container');
+    setTimeout(function() {
+        site.renderStorage();
+    }, 2000);
+};
+F.prototype.renderStorage = function() { // render your edits.
+    this.model.app.html('');
+    this.model.app.append(
+        this.model.db.getItem(
+            'template'
+        )); // load from localstorage.
+    setTimeout(function() {
+        $('.button-collapse').sideNav(); // side nav control initstantiate.
+    }, 3000);
+};
+
 F.prototype.renderDefault = function(
     template
 ) { // render default.
     this.template = template;
-    this.clearHtml(
-        this.model.app
-    );
+    this.model.app.html('');
     this.a(
         '#root',
         this.model.tempD
     ); // load from Super Class.
-    this.con(
-        'rendering the site from your Class.'
-    );
-    this.a(
-        '#status-bar', this.getDate() +
-        'Status | The site is rendering the site from the internal code.'
-    );
-    site.animateP('#status-bar');
     setTimeout(function() {
         $('.button-collapse').sideNav(); // side nav control initstantiate.
     }, 3000);
 };
+
 F.prototype.renderApi = function(
     template
 ) {
     this.template = template;
+    this.model.app.html('');
     this.getJ(
         'template.json'
     );
-    this.con(
-        'rendering the site from your api.'
-    );
-    this.a(
-        '#status-bar', this.getDate() +
-        'Status | The site is rendering the site from your api.'
-    );
-    site.animateP('#status-bar');
+
     setTimeout(function() {
         $('.button-collapse').sideNav(); // side nav control initstantiate.
     }, 3000);
 };
+
+
 F.prototype.renderParallax = function() {
     this.model.app.append(this.model.parallax);
 };
@@ -270,38 +203,10 @@ F.prototype.destroyCarousel = function() {
     this.animateH(carouselId);
 };
 
-F.prototype.editSave = function(val) {
-    this.val = this.model.el('#edit-area').val();
-    this.model.tempD = this.val;
-    this.set('template', this.model.tempD);
-    this.a(
-        '#status-bar', this.getDate() +
-        'Status | Your edits were saved to your downloads folder under the name yourEdits.'
-    );
-    site.animateP('#status-bar');
-};
-F.prototype.editDownload = function() {
-    this.editSave();
-    this.sFileEdits(this.model.db.getItem('template'));
-};
 F.prototype.renderNav = function() {
     this.model.app.prepend(this.model.nav);
 };
 
-F.prototype.editTemplate = function() {
-    this.model.el('#edit-area').val(this.model.app.html());
-    this.a(
-        '#status-bar', this.getDate() +
-        'Status | A copy of the template has been pasted into the edit area.'
-    );
-    site.animateP('#status-bar');
-};
-F.prototype.destroyNav = function() {
-    this.animateH(navId);
-};
-F.prototype.destroyAdmin = function() {
-    this.animateH(panelId);
-};
 F.prototype.clearHtml = function(
     id
 ) { // clear inner html.
@@ -391,4 +296,4 @@ site = new F(
 ); // instantiate.
 site.init();
 $(".button-collapse").sideNav();
-//site.todos();
+site.todos();
