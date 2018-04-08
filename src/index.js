@@ -11,7 +11,7 @@ var site,
         'tempD': tempD,
         'edit': edit,
         'todoArray': todoArray,
-        'app': $('#root'),
+        'app': $('body'),
         'el': $,
         'db': localStorage
     },
@@ -22,7 +22,36 @@ var site,
     };
 F.prototype.init = function() {
     this.renderDefault();
+
 };
+
+F.prototype.stopWorker = function(
+
+) {
+
+    this.w.terminate();
+    this.w = undefined;
+};
+
+F.prototype.startWorker = function(
+    w
+) {
+    this.w = w;
+    if (typeof(Worker) !== "undefined") {
+        if (typeof(this.w) == "undefined") {
+            this.w = new Worker("demo_workers.js");
+        }
+        this.w.onmessage = function(event) {
+            var webWorker = $("#worker-box");
+            webWorker.append(event.data);
+
+
+        };
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+    }
+};
+
 F.prototype.con = function(
     msg
 ) { // console.
@@ -50,33 +79,6 @@ F.prototype.del = function(
     this.model.el(
         this.id
     ).remove();
-};
-
-F.prototype.a = function(
-    id,
-    clone
-) { // append
-    this.id = id;
-    this.clone = clone;
-    this.clearHtml(this.id);
-    this.model.el(
-        id
-    ).append(
-        this.clone
-    );
-};
-F.prototype.p = function(
-    id,
-    clone
-) { // prepend
-    this.id = id;
-    this.clone = clone;
-    this.clearHtml(this.id);
-    this.model.el(
-        id
-    ).prepend(
-        this.clone
-    );
 };
 
 F.prototype.sFile = function(
@@ -124,17 +126,36 @@ F.prototype.editSave = function(val) {
     site.animateH('.edit-container');
     setTimeout(function() {
         site.renderStorage();
+            // initiate canvas
+    canvas.init();
+    Engine();
+    init();
     }, 2000);
 };
 F.prototype.renderStorage = function() { // render your edits.
     this.model.app.html('');
+
     this.model.app.append(
+        this.model.edit +
         this.model.db.getItem(
             'template'
         )); // load from localstorage.
-    setTimeout(function() {
-        $('.button-collapse').sideNav(); // side nav control initstantiate.
-    }, 3000);
+
+
+    // initialize scrollspy
+    $('body').scrollspy({
+        target: '.dotted-scrollspy'
+    });
+
+    // initialize lightbox
+    $(function() {
+        $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
+    });
+
+    $('.navbar-collapse a').click(function() {
+        $(".navbar-collapse").collapse('hide');
+    });
+    new WOW().init();
 };
 
 F.prototype.renderDefault = function(
@@ -142,13 +163,21 @@ F.prototype.renderDefault = function(
 ) { // render default.
     this.template = template;
     this.model.app.html('');
-    this.a(
-        '#root',
-        this.model.tempD
-    ); // load from Super Class.
-    setTimeout(function() {
-        $('.button-collapse').sideNav(); // side nav control initstantiate.
-    }, 3000);
+    this.model.app.append(this.model.edit, this.model.tempD); // load from Super Class.
+        // initialize scrollspy
+    $('body').scrollspy({
+        target: '.dotted-scrollspy'
+    });
+
+    // initialize lightbox
+    $(function() {
+        $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
+    });
+
+    $('.navbar-collapse a').click(function() {
+        $(".navbar-collapse").collapse('hide');
+    });
+    new WOW().init();
 };
 
 F.prototype.renderApi = function(
@@ -159,62 +188,23 @@ F.prototype.renderApi = function(
     this.getJ(
         'template.json'
     );
+    // initialize scrollspy
+    $('body').scrollspy({
+        target: '.dotted-scrollspy'
+    });
 
-    setTimeout(function() {
-        $('.button-collapse').sideNav(); // side nav control initstantiate.
-    }, 3000);
-};
+    // initialize lightbox
+    $(function() {
+        $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
+    });
 
-
-F.prototype.renderParallax = function() {
-    this.model.app.append(this.model.parallax);
-};
-F.prototype.destroyParallax = function() {
-    this.animateH(parallaxId);
-};
-F.prototype.renderFooter = function() {
-    this.model.app.append(this.model.footer);
-};
-F.prototype.destroyFooter = function() {
-    this.animateH(footerId);
-};
-F.prototype.renderVideoIntro = function() {
-    this.model.app.append(this.model.videoIntro);
-};
-F.prototype.destroyVideoIntro = function() {
-    this.animateH(videoIntroId);
-};
-F.prototype.renderProjects = function() {
-    this.model.app.append(this.model.projects);
-};
-F.prototype.destroyProjects = function() {
-    this.animateH(projectsId);
-};
-F.prototype.renderCommerce = function() {
-    this.model.app.append(this.model.commerce);
-};
-F.prototype.destroyCommerce = function() {
-    this.animateH(commerceId);
-};
-F.prototype.renderCarousel = function() {
-    this.model.app.append(this.model.carousel);
-};
-F.prototype.destroyCarousel = function() {
-    this.animateH(carouselId);
+    $('.navbar-collapse a').click(function() {
+        $(".navbar-collapse").collapse('hide');
+    });
+    new WOW().init();
 };
 
-F.prototype.renderNav = function() {
-    this.model.app.prepend(this.model.nav);
-};
 
-F.prototype.clearHtml = function(
-    id
-) { // clear inner html.
-    this.id = id;
-    this.model.el(
-        this.id
-    ).html('');
-};
 F.prototype.getJ = function(
     file
 ) { // get json file template.json.
@@ -235,7 +225,7 @@ F.prototype.getJ = function(
                         'check to see if the json file is in the src folder.'
                     );
                     site.p(
-                        '#root',
+                        '#body',
                         jsonError
                     );
                 }
@@ -295,5 +285,5 @@ site = new F(
     model
 ); // instantiate.
 site.init();
-$(".button-collapse").sideNav();
-site.todos();
+//site.todos();
+
