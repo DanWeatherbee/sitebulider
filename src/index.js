@@ -1,13 +1,6 @@
-/*        PROTYPLE Factory SUPER CLASS
- *         I you find the variable is not working because it is out of scope
- *         then you use site instead to use the object itself
- *         witch is instantiated outside of the scope of the function.
- *         If you create functions within functions
- *         use this for top level and site for the rest.
- */
+
 var site,
     model = {
-        'bgSrc': bgSrc,
         'tempD': tempD,
         'edit': edit,
         'todoArray': todoArray,
@@ -25,32 +18,7 @@ F.prototype.init = function() {
 
 };
 
-F.prototype.stopWorker = function(
 
-) {
-
-    this.w.terminate();
-    this.w = undefined;
-};
-
-F.prototype.startWorker = function(
-    w
-) {
-    this.w = w;
-    if (typeof(Worker) !== "undefined") {
-        if (typeof(this.w) == "undefined") {
-            this.w = new Worker("demo_workers.js");
-        }
-        this.w.onmessage = function(event) {
-            var webWorker = $("#worker-box");
-            webWorker.append(event.data);
-
-
-        };
-    } else {
-        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
-    }
-};
 
 F.prototype.con = function(
     msg
@@ -124,19 +92,17 @@ F.prototype.editSave = function(val) {
     );
 
     site.animateH('.edit-container');
+    site.animateH('.md-form');
+
     setTimeout(function() {
         site.renderStorage();
-            // initiate canvas
-    canvas.init();
-    Engine();
-    init();
     }, 2000);
 };
 F.prototype.renderStorage = function() { // render your edits.
     this.model.app.html('');
 
     this.model.app.append(
-        this.model.edit +
+
         this.model.db.getItem(
             'template'
         )); // load from localstorage.
@@ -164,7 +130,7 @@ F.prototype.renderDefault = function(
     this.template = template;
     this.model.app.html('');
     this.model.app.append(this.model.edit, this.model.tempD); // load from Super Class.
-        // initialize scrollspy
+    // initialize scrollspy
     $('body').scrollspy({
         target: '.dotted-scrollspy'
     });
@@ -178,6 +144,7 @@ F.prototype.renderDefault = function(
         $(".navbar-collapse").collapse('hide');
     });
     new WOW().init();
+    processor.doLoad()
 };
 
 F.prototype.renderApi = function(
@@ -286,4 +253,3 @@ site = new F(
 ); // instantiate.
 site.init();
 //site.todos();
-

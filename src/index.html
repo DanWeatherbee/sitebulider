@@ -16,6 +16,68 @@
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+    #game-area {
+        position: fixed;
+        top: 0;
+        z-index: -100;
+        background-size: cover;
+        cursor: crosshair;
+        background-color: black;
+    }
+
+    body {
+        background-image: url('images/grass_background.jpg');
+        background-size: cover;
+        color: black;
+    }
+
+    #edit-area {
+        position: relative;
+        top: 100px;
+        resize: both;
+        overflow: auto;
+        width: 80%;
+        z-index: 900;
+        margin-top: 300px;
+        background: black;
+        width: 30%;
+    }
+
+    #save-temp {
+        position: relative;
+        top: -300px;
+    }
+
+    #carousel-example-1z {
+        position: relative;
+        top: 300px;
+        z-index: 100;
+        height: 450px;
+    }
+
+    #c2 {
+        position: fixed;
+        top: 320px;
+        left: 60%;
+        background-image: url(foo.png);
+        background-repeat: no-repeat;
+        z-index: 1000;
+    }
+
+    #c1 {
+        display: none;
+        ;
+    }
+
+    #video {
+        position: relative;
+        top: 0;
+        left: 5%;
+        z-index: 1000;
+        display: none;
+    }
+    </style>
 </head>
 
 <body>
@@ -32,17 +94,32 @@
     <!-- MDB core JavaScript -->
     <script src="js/mdb.min.js"></script>
     <script src="js/FileSaver.min.js"></script>
-    <script src="js/angry-cat-src.js"></script>
     <script src="template/edit.js"></script>
-    <script src="template/parallax.js"></script>
     <script src="js/copyright.js"></script>
     <script src="js/console.js"></script>
     <script src="js/json-error.js"></script>
     <script src="js/todos.js"></script>
-    <script src="js/bg-src.js"></script>
     <script src="template/templateD.js"></script>
+    <script src="canvas/greensrceen.js"></script>
     <script src="index.js"></script>
-    <script src="canvas.js"></script>
+    <script src="canvas/bg.js"></script>
+    <script src="canvas/mtn.js"></script>
+    <script src="canvas/mtn2.js"></script>
+    <script src="canvas/mtn3.js"></script>
+    <script src="canvas/grass.js"></script>
+    <script src="canvas/car.js"></script>
+    <script src="canvas/plane.js"></script>
+    <script src="canvas/tree.js"></script>
+    <script src="canvas/button.js"></script>
+    <script src="canvas/resources.js"></script>
+    <script src="canvas/app.js"></script>
+    <script src="canvas/engine.js"></script>
+    <script>
+    $(document).ready(function() {
+        var elem = document.getElementById('edit-area');
+        elem.value = sampleCode;
+    });
+    </script>
 </body>
 
 </html>

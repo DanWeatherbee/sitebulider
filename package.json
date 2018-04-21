@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DanWeatherbee/sitebulider#readme",
   "devDependencies": {
+    "file-saver": "^1.3.3",
     "mdbootstrap": "^4.4.4"
   }
 }
